@@ -1,7 +1,7 @@
 <template>
   <div class="SubmitForm">
     <div class="Form">
-      <form class="formValidation">
+      <form class="formValidation" @submit.prevent="submitForm">
         <label for="surname">
           Фамилия
           <input type="text" v-model.trim="surname" class="notreq" /> </label
@@ -137,7 +137,7 @@
         >
           это поле обязательно
         </div>
-        <button type="submit" @submit.prevent="submitForm" class="submit">
+        <button type="submit" class="submit">
           отправить форму
         </button>
       </form>
@@ -201,25 +201,30 @@ export default {
   },
   methods: {
     submitForm() {
-      return {
-        name: "",
-        surname: "",
-        patronymic: "",
-        birthday: "",
-        numberPhone: "",
-        sex: "",
-        groupClients: "",
-        doctor: "",
-        sms: "",
-        city: "",
-        index: "",
-        country: "",
-        Region: "",
-        street: "",
-        House: "",
-        dateOfIssue: "",
-        document: ""
-      };
+      if (!this.$v.$invalid) {
+        alert("Вы успешно зарегистрировались");
+        return {
+          name: "",
+          surname: "",
+          patronymic: "",
+          birthday: "",
+          numberPhone: "",
+          sex: "",
+          groupClients: "",
+          doctor: "",
+          sms: "",
+          city: "",
+          index: "",
+          country: "",
+          Region: "",
+          street: "",
+          House: "",
+          dateOfIssue: "",
+          document: ""
+        };
+      } else {
+        alert("пожалуйста заполните все поля");
+      }
     }
   }
 };
